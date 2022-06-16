@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#    By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 21:10:12 by aalseri           #+#    #+#              #
-#    Updated: 2022/06/11 13:55:29 by aalseri          ###   ########.fr        #
+#    Updated: 2022/06/11 15:27:14 by aalseri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ ${NAME} :
 	$(CC) -g -o pipex ${SRCS} ./libft/libft.a
 	@${MAKE} clean -C libft
 
-onlypush:
+onlypipe:
 	$(CC) -g -o pipex ${SRCS} ./libft/libft.a
 
 clean:

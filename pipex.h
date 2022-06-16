@@ -10,8 +10,8 @@ typedef struct s_pipex
 	char	*fpath;
 	int		in_fd;
 	int		out_fd;
-	char	*cmd1;
-	char	*cmd2;
+	char	**cmd1;
+	char	**cmd2;
 }				t_pipex;
 
 t_pipex	*initilize(int ac, char **av, char **envp);

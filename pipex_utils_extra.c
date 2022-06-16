@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils_extra.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:31:44 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/11 14:17:16 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/16 16:53:18 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,53 @@ char	*find_path(t_pipex *p)
 	return (p->envp[i]);
 }
 
-// static char	**ret_cmd(t_pipex *data, int i)
-// {
-// 	char	**path;
-// 	char	**cmd;
-// 	char	*tmp_cmd;
-// 	char	*tmp;
-
-// 	path = find_path(data->envp);
-// 	cmd = ft_split(data->av[i], ' ');
-// 	if (!cmd)
-// 		ft_error(EXIT_FAILURE, data);
-// 	tmp_cmd = ft_strjoin("/", *cmd);
-// 	if (!tmp_cmd)
-// 		ft_error(EXIT_FAILURE, data);
-// 	tmp = *cmd;
-// 	*cmd = find_check_cmd(path, tmp_cmd);
-// 	if (!(*cmd))
-// 		ft_error(EXIT_FAILURE, data);
-// 	ft_free(&tmp);
-// 	ft_free(&tmp_cmd);
-// 	ft_undo_alloc(path);
-// 	return (cmd);
-// }
-
-char *find_command(char *str)
+char	*find_check_cmd(char *path, char *tmp_cmd)
 {
+	char	**str;
+	int		i;
+	char	*s;
 	
+	i = 0;
+	path += 6;
+	str = ft_split(path, ':');
+	while (str[i] != NULL)
+	{
+		s = ft_strjoin(str[i], tmp_cmd);
+		// printf("%s\n", s);
+		if (access(s, R_OK) == 0)
+		{	
+			ft_undo_alloc(str);
+			free(str);
+			return (s);
+		}
+		i++;
+	}
+}
+
+char	**ret_cmd(t_pipex *data, int i)
+{
+	char	*path;
+	char	**cmd;
+	char	*tmp_cmd;
+	char	*tmp;
+
+	path = find_path(data);
+	cmd = ft_split(data->av[i], ' ');
+	if (!cmd)
+		ft_error(EXIT_FAILURE, data);
+	tmp_cmd = ft_strjoin("/", *cmd);
+	if (!tmp_cmd)
+		ft_error(EXIT_FAILURE, data);
+	tmp = *cmd;
+	*cmd = find_check_cmd(path, tmp_cmd);
+	printf("we got it %s\n", *cmd);
+	char *test = ft_strjoin(*cmd, cmd)
+	// if (!(*cmd))
+	// 	ft_error(EXIT_FAILURE, data);
+	// ft_free(&tmp);
+	// ft_free(&tmp_cmd);
+	// ft_undo_alloc(path);
+	return (cmd);
 }
 
 t_pipex	*open_fd_cmd(t_pipex *data)
@@ -76,9 +96,8 @@ t_pipex	*open_fd_cmd(t_pipex *data)
 	if (data->out_fd == -1)
 		ft_error(EXIT_FAILURE, data);
 	data->fpath = find_path(data);
-	
-	data->cmd1 = find_command(data->av[2]);
-	data->cmd2 = find_command(data->av[3]);
+	data->cmd1 = ret_cmd(data, 2);
+	data->cmd2 = ret_cmd(data, 3);
 	return (data);
 }
 
