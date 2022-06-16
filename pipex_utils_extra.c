@@ -6,7 +6,7 @@
 /*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:31:44 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/16 16:53:18 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/16 18:21:49 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*find_path(t_pipex *p)
 	return (p->envp[i]);
 }
 
-char	*find_check_cmd(char *path, char *tmp_cmd)
+char	*find_check_cmd(char *path, char *t_cmd)
 {
 	char	**str;
 	int		i;
@@ -49,8 +49,7 @@ char	*find_check_cmd(char *path, char *tmp_cmd)
 	str = ft_split(path, ':');
 	while (str[i] != NULL)
 	{
-		s = ft_strjoin(str[i], tmp_cmd);
-		// printf("%s\n", s);
+		s = ft_strjoin(str[i], t_cmd);
 		if (access(s, R_OK) == 0)
 		{	
 			ft_undo_alloc(str);
@@ -65,25 +64,23 @@ char	**ret_cmd(t_pipex *data, int i)
 {
 	char	*path;
 	char	**cmd;
-	char	*tmp_cmd;
-	char	*tmp;
+	char	*t_cmd;
+	char	*s;
 
 	path = find_path(data);
 	cmd = ft_split(data->av[i], ' ');
 	if (!cmd)
 		ft_error(EXIT_FAILURE, data);
-	tmp_cmd = ft_strjoin("/", *cmd);
-	if (!tmp_cmd)
+	t_cmd = ft_strjoin("/", *cmd);
+	if (!t_cmd)
 		ft_error(EXIT_FAILURE, data);
-	tmp = *cmd;
-	*cmd = find_check_cmd(path, tmp_cmd);
-	printf("we got it %s\n", *cmd);
-	char *test = ft_strjoin(*cmd, cmd)
-	// if (!(*cmd))
-	// 	ft_error(EXIT_FAILURE, data);
-	// ft_free(&tmp);
-	// ft_free(&tmp_cmd);
-	// ft_undo_alloc(path);
+	s = *cmd;
+	*cmd = find_check_cmd(path, t_cmd);
+	if (!(*cmd))
+		ft_error(EXIT_FAILURE, data);
+	printf("%s\n", *cmd);
+	ft_free(&s);
+	ft_free(&t_cmd);
 	return (cmd);
 }
 
@@ -101,6 +98,21 @@ t_pipex	*open_fd_cmd(t_pipex *data)
 	return (data);
 }
 
+void	ft_quit(int status, t_pipex *data)
+{
+	if (data->cmd1)
+	{
+		ft_undo_alloc(data->cmd1);
+		free(data->cmd1);
+		data->cmd1 = NULL;
+	}
+	if (data->cmd2)
+	{
+		ft_undo_alloc(data->cmd2);
+		free(data->cmd2);
+		data->cmd2 = NULL;
+	}
+}
 t_pipex	*initilize(int ac, char **av, char **envp)
 {
 	t_pipex	data;
@@ -110,6 +122,7 @@ t_pipex	*initilize(int ac, char **av, char **envp)
 	data.ac = ac;
 	data.av = av;
 	open_fd_cmd(&data);
+	ft_quit(0, &data);
 	// data->nb_cmds = ac - 3 - data->heredoc;
 	// data->pids = malloc(sizeof * data->pids * data->nb_cmds);
 	// if (!data->pids)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+         #
+#    By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 21:10:12 by aalseri           #+#    #+#              #
-#    Updated: 2022/06/06 11:07:37 by aalseri          ###   ########.fr        #
+#    Updated: 2022/06/16 18:07:15 by aalseri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS = ./gnl/get_next_line.c ./gnl/get_next_line_utils.c \
 	./ft_printf/ft_crazy.c ./ft_printf/ft_putnbr_base.c \
 	./ft_printf/ft_putnbr.c ./ft_printf/ft_putnbr_un.c \
 	./ft_printf/ft_putpointer.c ./ft_printf/ft_putstr.c \
-	./ft_printf/ft_puthexa.c ./ft_printf/ft_putchar.c
+	./ft_printf/ft_puthexa.c ./ft_printf/ft_putchar.c ft_free.c
 
 SRCS_BONUS =	ft_lstnew.c ft_lstadd_front.c \
 	ft_lstadd_back.c ft_lstlast.c ft_lstsize.c \
