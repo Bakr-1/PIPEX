@@ -6,23 +6,11 @@
 /*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:31:44 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/16 18:21:49 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/17 18:28:36 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	init_data(t_pipex *data)
-{
-	data->envp = NULL;
-	data->ac = 0;
-	data->av = NULL;
-	data->in_fd = 0;
-	data->out_fd = -1;
-	data->fpath = NULL;
-	data->cmd1 = NULL;
-	data->cmd2 = NULL;
-}
 
 char	*find_path(t_pipex *p)
 {
@@ -58,82 +46,132 @@ char	*find_check_cmd(char *path, char *t_cmd)
 		}
 		i++;
 	}
+	return (NULL);
 }
 
-char	**ret_cmd(t_pipex *data, int i)
+char	**ret_cmd(t_pipex *p, int i)
 {
 	char	*path;
 	char	**cmd;
 	char	*t_cmd;
 	char	*s;
 
-	path = find_path(data);
-	cmd = ft_split(data->av[i], ' ');
-	if (!cmd)
-		ft_error(EXIT_FAILURE, data);
+	path = find_path(p);
+	if (i == 2)
+		p->pcmd1 = ft_split(p->av[i], ' ');
+	else
+		p->pcmd2 = ft_split(p->av[i], ' ');
+	cmd = ft_split(p->av[i], ' ');
+	if (!cmd && !p->pcmd1 && !p->pcmd2)
+		ft_error("split", strerror(errno), EXIT_FAILURE, p);
 	t_cmd = ft_strjoin("/", *cmd);
 	if (!t_cmd)
-		ft_error(EXIT_FAILURE, data);
-	s = *cmd;
+		ft_error("strjoin", strerror(errno), EXIT_FAILURE, p);
 	*cmd = find_check_cmd(path, t_cmd);
 	if (!(*cmd))
-		ft_error(EXIT_FAILURE, data);
-	printf("%s\n", *cmd);
-	ft_free(&s);
+		ft_error("cmd check", strerror(errno), EXIT_FAILURE, p);
 	ft_free(&t_cmd);
 	return (cmd);
 }
 
-t_pipex	*open_fd_cmd(t_pipex *data)
+t_pipex	*open_fd_cmd(t_pipex *p)
 {
-	data->in_fd = open(data->av[1], O_RDONLY);
-	if (data->in_fd == -1)
-		ft_error(EXIT_FAILURE, data);
-	data->out_fd = open(data->av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (data->out_fd == -1)
-		ft_error(EXIT_FAILURE, data);
-	data->fpath = find_path(data);
-	data->cmd1 = ret_cmd(data, 2);
-	data->cmd2 = ret_cmd(data, 3);
-	return (data);
+	p->in_fd = open(p->av[1], O_RDONLY);
+	if (p->in_fd == -1)
+		ft_error("fd error", strerror(errno), EXIT_FAILURE, p);
+	p->out_fd = open(p->av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (p->out_fd == -1)
+		ft_error("fd error", strerror(errno), EXIT_FAILURE, p);
+	p->fpath = find_path(p);
+	p->cmd1 = ret_cmd(p, 2);
+	p->cmd2 = ret_cmd(p, 3);
+	return (p);
 }
 
-void	ft_quit(int status, t_pipex *data)
+void	ft_free_struct1(t_pipex *p)
 {
-	if (data->cmd1)
+	if (p->cmd1)
 	{
-		ft_undo_alloc(data->cmd1);
-		free(data->cmd1);
-		data->cmd1 = NULL;
+		ft_undo_alloc(p->cmd1);
+		free(p->cmd1);
+		p->cmd1 = NULL;
 	}
-	if (data->cmd2)
+	if (p->cmd2)
 	{
-		ft_undo_alloc(data->cmd2);
-		free(data->cmd2);
-		data->cmd2 = NULL;
+		ft_undo_alloc(p->cmd2);
+		free(p->cmd2);
+		p->cmd2 = NULL;
+	}
+	if (p->pcmd1)
+	{
+		ft_undo_alloc(p->pcmd1);
+		free(p->pcmd1);
+		p->pcmd1 = NULL;
+	}
+	if (p->pcmd2)
+	{
+		ft_undo_alloc(p->pcmd2);
+		free(p->pcmd2);
+		p->pcmd2 = NULL;
 	}
 }
-t_pipex	*initilize(int ac, char **av, char **envp)
-{
-	t_pipex	data;
 
-	init_data(&data);
-	data.envp = envp;
-	data.ac = ac;
-	data.av = av;
-	open_fd_cmd(&data);
-	ft_quit(0, &data);
-	// data->nb_cmds = ac - 3 - data->heredoc;
-	// data->pids = malloc(sizeof * data->pids * data->nb_cmds);
-	// if (!data->pids)
-	// 	exit_error(msg("PID error", strerror(errno), "", 1), &data);
-	// data->pipe = malloc(sizeof * data->pipe * 2 * (data->nb_cmds - 1));
-	// if (!data->pipe)
-	// 	exit_error(msg("Pipe error", "", "", 1), &data);
-	// generate_pipes(&data);
+void	ft_free_struct2(t_pipex *p)
+{
+	if (p->in_fd != -1)
+		close(p->in_fd);
+	if (p->out_fd != -1)
+		close(p->out_fd);
+	if (p->fd[0])
+		close(p->fd[0]);
+	if (p->fd[1])
+		close(p->fd[1]);
 }
 
-void	ft_error(int status, t_pipex *data)
+
+t_pipex	*initilize(t_pipex *p, char **av, char **envp)
 {
-	exit(1);
+	p = ft_calloc(1, sizeof(t_pipex));
+	p->envp = envp;
+	p->av = av;
+	p = open_fd_cmd(p);
+	return (p);
+}
+
+void	close_error(t_pipex *p)
+{
+	if (p->in_fd != -1)
+		close(p->in_fd);
+	if (p->out_fd != -1)
+		close(p->out_fd);
+	if (p->fd[0])
+		close(p->fd[0]);
+	if (p->fd[1])
+		close(p->fd[1]);
+}
+
+void	ft_error(char *str, char *error, int status, t_pipex *p)
+{
+	ft_putstr(str);
+	ft_putchar('\t');
+	ft_putendl_fd(error, status);
+	ft_free_struct1(p);
+	ft_free_struct2(p);
+	close_error(p);
+	exit(status);
+}
+
+void	ft_quit(int status, t_pipex *p)
+{
+	// ft_free_struct1(p);
+	// ft_free_struct2(p);
+	ft_undo_alloc(p->cmd1);
+	ft_undo_alloc(p->cmd2);
+	ft_undo_alloc(p->pcmd1);
+	ft_undo_alloc(p->pcmd2);
+	free(p->cmd1);
+	free(p->cmd2);
+	free(p->pcmd1);
+	free(p->pcmd2);
+	exit(status);
 }
