@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:03:50 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/17 18:27:44 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/18 22:11:25 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**ft_undo_alloc(char **s)
 	return (NULL);
 }
 
-static int	count_words(char const *str, char set)
+int	count_words(char const *str, char set)
 {
 	int	i;
 	int	x;

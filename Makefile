@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+         #
+#    By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 21:10:12 by aalseri           #+#    #+#              #
-#    Updated: 2022/06/17 16:58:01 by aalseri          ###   ########.fr        #
+#    Updated: 2022/06/18 22:15:55 by aalseri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-SRCS = main.c pipex_utils2.c pipex_utils_extra.c
+SRCS = main.c pipex_utils2.c pipex_utils1.c error_handle.c
 
 INCLUDES = pipex.h
 

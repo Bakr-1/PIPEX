@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:10:04 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/11 16:34:39 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/18 13:25:52 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		ft_isdigitneg(char *c);
 char	*ft_strcat(char *dest, char *src);
 void	*ft_free(char **str);
 char	**ft_undo_alloc(char **s);
+int		count_words(char const *str, char set);
 
 //get next line:
 
@@ -100,6 +101,5 @@ char	**ft_undo_alloc(char **s);
 char	*ft_strnl(char *s);
 char	*get_next_line(int fd);
 char	*stringdup(char *s);
-
 
 #endif
