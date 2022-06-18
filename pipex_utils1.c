@@ -6,7 +6,7 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:31:44 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/19 01:18:56 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/19 01:27:57 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ t_pipex	*open_fd_cmd(t_pipex *p)
 {
 	p->in_fd = open(p->av[1], O_RDONLY);
 	if (p->in_fd == -1)
-		ft_error("fd error", strerror(errno), EXIT_FAILURE, p);
+		ft_error("fd error in", strerror(errno), EXIT_FAILURE, p);
 	p->out_fd = open(p->av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (p->out_fd == -1)
-		ft_error("fd error", strerror(errno), EXIT_FAILURE, p);
+		ft_error("fd error out", strerror(errno), EXIT_FAILURE, p);
 	p->fpath = find_path(p);
 	p->cmd1 = ret_cmd(p, 2, p->fpath + 5);
 	p->cmd2 = ret_cmd(p, 3, p->fpath + 5);
