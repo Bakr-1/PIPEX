@@ -6,7 +6,7 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 11:31:44 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/18 22:18:49 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/19 01:18:56 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,17 @@ char	*find_path(t_pipex *p)
 
 char	*find_check_cmd(char *path, char *t_cmd)
 {
-	char	**str;
 	int		i;
 	char	*s;
+	char	**str;
 
 	i = 0;
-	path += 6;
 	str = ft_split(path, ':');
 	if (!str)
 		return (NULL);
 	while (str[i] != NULL)
 	{
 		s = ft_strjoin(str[i], t_cmd);
-		if (!s)
-			return (NULL);
 		if (access(s, R_OK) == 0)
 		{
 			ft_undo_alloc(str);
@@ -52,17 +49,17 @@ char	*find_check_cmd(char *path, char *t_cmd)
 		s = NULL;
 		i++;
 	}
+	ft_undo_alloc(str);
+	free(str);
+	free(s);
 	return (NULL);
 }
 
-char	**ret_cmd(t_pipex *p, int i)
+char	**ret_cmd(t_pipex *p, int i, char *path)
 {
-	char	*path;
 	char	**cmd;
 	char	*t_cmd;
-	char	*s;
 
-	path = find_path(p);
 	if (i == 2)
 		p->pcmd1 = ft_split(p->av[i], ' ');
 	if (i == 3)
@@ -75,9 +72,13 @@ char	**ret_cmd(t_pipex *p, int i)
 		ft_error("strjoin", strerror(errno), EXIT_FAILURE, p);
 	free(cmd[0]);
 	cmd[0] = find_check_cmd(path, t_cmd);
-	if (!(*cmd))
-		ft_error("cmd check", strerror(errno), EXIT_FAILURE, p);
 	free(t_cmd);
+	if (!(*cmd))
+	{
+		ft_undo_alloc(cmd);
+		free(cmd);
+		ft_error("cmd check", strerror(errno), EXIT_FAILURE, p);
+	}
 	return (cmd);
 }
 
@@ -90,16 +91,13 @@ t_pipex	*open_fd_cmd(t_pipex *p)
 	if (p->out_fd == -1)
 		ft_error("fd error", strerror(errno), EXIT_FAILURE, p);
 	p->fpath = find_path(p);
-	p->cmd1 = ret_cmd(p, 2);
-	p->cmd2 = ret_cmd(p, 3);
+	p->cmd1 = ret_cmd(p, 2, p->fpath + 5);
+	p->cmd2 = ret_cmd(p, 3, p->fpath + 5);
 	return (p);
 }
 
 t_pipex	*initilize(t_pipex *p, char **av, char **envp)
 {
-	p = ft_calloc(1, sizeof(t_pipex));
-	if (!p)
-		ft_error("malloc error", strerror(errno), EXIT_FAILURE, p);
 	p->envp = envp;
 	p->av = av;
 	p = open_fd_cmd(p);

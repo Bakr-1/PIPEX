@@ -6,13 +6,13 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:33 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/18 22:16:17 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/18 22:28:12 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-t_pipex	*child_pipex(t_pipex *p, int i)
+t_pipex	*child_pipex(t_pipex *p)
 {
 	if (p->pid1)
 	{
@@ -46,6 +46,6 @@ t_pipex	*pipex(t_pipex *p)
 	p->pid1 = fork();
 	if (p->pid1 == -1)
 		ft_error("fork", strerror(errno), EXIT_FAILURE, p);
-	child_pipex(p, p->pid1);
+	child_pipex(p);
 	return (p);
 }
