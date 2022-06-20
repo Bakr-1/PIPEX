@@ -1,0 +1,14 @@
+error_handle.c
+error_handle.o
+in
+libft
+main.c
+main.o
+Makefile
+out
+pipex
+pipex.h
+pipex_utils1.c
+pipex_utils1.o
+pipex_utils2.c
+pipex_utils2.o
