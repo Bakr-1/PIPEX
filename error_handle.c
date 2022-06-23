@@ -6,7 +6,7 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 13:06:21 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/19 01:19:44 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/23 13:18:49 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_error(char *str, char *error, int status, t_pipex *p)
 	ft_free_struct2(p);
 	close_error(p);
 	free(p);
+	status = 11;
 	exit(status);
 }
 
@@ -81,5 +82,6 @@ void	ft_quit(int status, t_pipex *p)
 	ft_free_struct1(p);
 	ft_free_struct2(p);
 	free(p);
+	printf("test\n");
 	exit(status);
 }

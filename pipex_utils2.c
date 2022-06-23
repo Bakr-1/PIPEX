@@ -6,7 +6,7 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:33 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/18 22:28:12 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/23 13:27:14 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ t_pipex	*child_pipex(t_pipex *p)
 		dup2(p->fd[1], STDOUT_FILENO);
 		close(p->fd[0]);
 		close(p->in_fd);
+		printf("in pid1 = %d\n", p->pid1);
+		ft_putstr_fd("test\n", 2);
 		execve(p->cmd1[0], p->pcmd1, p->envp);
-		waitpid(p->pid2, NULL, 0);
 	}
 	else
 	{
@@ -32,10 +33,19 @@ t_pipex	*child_pipex(t_pipex *p)
 			dup2(p->fd[0], STDIN_FILENO);
 			close(p->fd[1]);
 			close(p->out_fd);
+			printf("fdin pid2 = %d\n", p->pid2);
+			ft_putstr_fd("from child 2\n", 2);
 			execve(p->cmd2[0], p->pcmd2, p->envp);
-			waitpid(p->pid1, NULL, 0);
 		}
 	}
+	printf("pid1 = %d\n", p->pid1);
+	printf("pid2 = %d\n", p->pid2);
+	if (wait(0) == -1)
+		printf("Waitpid failed\n");
+	wait(0);
+		// if(waitpid(p->pid1, NULL, 0) ==  -1)
+		// if(waitpid(p->pid2, NULL, 0) ==  -1)
+		// 	printf("Waitpid failed\n");
 	return (p);
 }
 
