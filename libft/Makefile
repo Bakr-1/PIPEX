@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+         #
+#    By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 21:10:12 by aalseri           #+#    #+#              #
-#    Updated: 2022/06/25 15:47:37 by aalseri          ###   ########.fr        #
+#    Updated: 2022/06/25 15:52:05 by aalseri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(NAME):	$(OBJS)
 			@echo "${BIGreen}\nLibft is READY!${Color_Off}"
 
 clean:
-			@echo "${BIRed}Cleaned!${Color_Off}"
+			@echo "${BIRed}Libft Cleaned!${Color_Off}"
 			@$(RM) $(OBJS)
 			@$(RM) -r $(DIR_OBJS)
 
