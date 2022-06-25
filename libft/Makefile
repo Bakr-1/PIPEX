@@ -6,7 +6,7 @@
 #    By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 21:10:12 by aalseri           #+#    #+#              #
-#    Updated: 2022/06/25 15:52:05 by aalseri          ###   ########.fr        #
+#    Updated: 2022/06/25 16:24:52 by aalseri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,6 @@ SRCS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_SRCS)/, $(dir)))
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
 SRCS		= $(foreach dir, $(SRCS_DIRS), $(wildcard $(dir)/*.c))
 OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
-
-
-OBJS_BONUS = ${SRCS_BONUS:.c=.o}
 
 INCLUDES	= -I includes
 

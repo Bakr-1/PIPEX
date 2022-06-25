@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 13:06:21 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/23 14:31:08 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/25 16:26:51 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 void	ft_free_struct1(t_pipex *p)
 {

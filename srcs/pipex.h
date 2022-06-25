@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:20:50 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/25 15:35:29 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/25 17:21:11 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "./libft/includes/libft.h"
-# include <unistd.h>
+# include "../libft/includes/libft.h"
 
 typedef struct s_pipex
 {
