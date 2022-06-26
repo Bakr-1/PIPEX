@@ -6,11 +6,11 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 19:54:45 by aalseri           #+#    #+#             */
-/*   Updated: 2022/05/07 22:34:34 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:36:44 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
 int	ft_atoiof(const char *str, int *value)
 {

@@ -6,11 +6,11 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 03:53:38 by aalseri           #+#    #+#             */
-/*   Updated: 2022/04/12 05:16:02 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:37:57 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
 int	ft_isdigitneg(char *c)
 {

@@ -6,11 +6,11 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:04:47 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/17 23:30:56 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:40:15 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {

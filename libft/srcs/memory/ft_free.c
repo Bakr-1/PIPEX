@@ -6,11 +6,11 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 01:40:07 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/06 10:33:44 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:39:53 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
 void	*ft_free(char **str)
 {

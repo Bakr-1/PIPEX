@@ -6,11 +6,11 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:04:16 by aalseri           #+#    #+#             */
-/*   Updated: 2022/04/18 01:51:24 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:41:22 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libft.h"
 
 // char	*ft_strchr(const char *s, int c)
 // {
