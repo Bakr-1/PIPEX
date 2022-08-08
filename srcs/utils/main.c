@@ -6,7 +6,7 @@
 /*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:18:04 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/23 13:15:34 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/08/08 11:53:27 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	main(int ac, char **ag, char **envp)
 	if (ac != 5)
 	{
 		ft_putendl_fd("number of arguments must be 5", 2);
+		exit(EXIT_FAILURE);
+	}
+	if (!ft_strlen(ag[2]) || !ft_strlen(ag[3]))
+	{
+		ft_putendl_fd("no command given", 2);
 		exit(EXIT_FAILURE);
 	}
 	p = ft_calloc(1, sizeof(t_pipex));

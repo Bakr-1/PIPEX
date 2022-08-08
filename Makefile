@@ -6,7 +6,7 @@
 #    By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 21:10:12 by aalseri           #+#    #+#              #
-#    Updated: 2022/06/25 17:15:56 by aalseri          ###   ########.fr        #
+#    Updated: 2022/08/08 11:44:00 by aalseri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(DIR_OBJS)/, $(dir)))
 SRCS		= $(foreach dir, $(SRCS_DIRS), $(wildcard $(dir)/*.c))
 OBJS		= $(subst $(DIR_SRCS), $(DIR_OBJS), $(SRCS:.c=.o))
 
-INCLUDES = -I ./srcs
+INCLUDES = -I ./includes
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
