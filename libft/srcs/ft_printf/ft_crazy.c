@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_crazy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
+/*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 21:40:07 by aalseri           #+#    #+#             */
-/*   Updated: 2022/03/06 21:40:33 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/07/16 14:56:17 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../includes/ft_printf.h"
 
 size_t	ft_crazy(const char *str, va_list ptr)
-{	
+{
 	size_t	len;
 
 	len = 0;

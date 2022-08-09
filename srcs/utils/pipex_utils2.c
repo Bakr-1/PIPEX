@@ -6,11 +6,11 @@
 /*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:33 by aalseri           #+#    #+#             */
-/*   Updated: 2022/06/23 14:45:13 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:28:30 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include <pipex.h>
 
 t_pipex	*child_pipex(t_pipex *p)
 {
