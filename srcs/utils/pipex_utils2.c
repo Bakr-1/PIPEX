@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalseri <aalseri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:33 by aalseri           #+#    #+#             */
-/*   Updated: 2022/08/09 11:28:30 by aalseri          ###   ########.fr       */
+/*   Updated: 2022/09/12 18:26:44 by aalseri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_pipex	*child_pipex(t_pipex *p)
 {
-	if (p->pid1)
+	if (!p->pid1)
 	{
 		dup2(p->in_fd, STDIN_FILENO);
 		dup2(p->fd[1], STDOUT_FILENO);
@@ -25,7 +25,7 @@ t_pipex	*child_pipex(t_pipex *p)
 	else
 	{
 		p->pid2 = fork();
-		if (p->pid2)
+		if (!p->pid2)
 		{
 			dup2(p->out_fd, STDOUT_FILENO);
 			dup2(p->fd[0], STDIN_FILENO);
