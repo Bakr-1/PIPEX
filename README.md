@@ -23,6 +23,8 @@ Your project must comply with the following rules:
 
 The function is written in C language and thus needs the gcc compiler and some standard C libraries to run.
 
+This project works for both MacOS and Linux
+
 Compiling the project
 
 To compile, clone the repository and run the following inside the folder:
