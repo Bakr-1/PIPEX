@@ -29,7 +29,7 @@ Compiling the project
 
 To compile, clone the repository and run the following inside the folder:
 ```bash
-$make
+$>make
 ```
 
 The program will be executed as follows:
