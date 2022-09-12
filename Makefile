@@ -6,13 +6,11 @@
 #    By: aalseri <aalseri@student.42abudhabi.ae>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/24 21:10:12 by aalseri           #+#    #+#              #
-#    Updated: 2022/09/12 20:06:52 by aalseri          ###   ########.fr        #
+#    Updated: 2022/09/12 20:09:06 by aalseri          ###   ########           #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-
-SRCS = main.c pipex_utils1.c pipex_utils2.c error_handle.c
 
 DIR_SRCS	= srcs
 DIR_OBJS	= objs
